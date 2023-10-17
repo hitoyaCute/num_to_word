@@ -129,15 +129,16 @@ if __name__ == "__m ain__":
 #decrement the f it will register as 919000 so yeah
 #i just reset the f each time
 def num_to_word(number:int=None):
-	if str(number).isalpha() or not(0 < number < int("9"*(45))):
-		import inspect
-		a = inspect.stack()[1]
-		raise ValueError(f"{a.function} on line {a.lineno} Value must be inside the range 0 to {'9'*45}")
-	if number == 0 or number == None:
-		return "zero"
-	if __name__ == "__main__":
-		print(number)
+	if __name__ == "__main__":print(number)
+	def er():
+		import inspect as im
+		a,b,c = im.stack()[2],im.stack()[1],"999,"*int(45/3)
+		raise ValueError(f"{a.function} call {b.function} on line {a.lineno} Value must be intiger the range -{c} to {c};'{number}'")
+	if str(number).isalpha():er()
+	if not -(int("9"*45)) <= number <= int("9"*45):er()
+	if number == 0 or number == None:return "zero"
 	f,output = 0,""
+	if str(number).startswith("-") :output,number = output+"negative",int(str(number)[1:])
 	word = ("",'One ','Two ','Three ','Four ','Five ','Six ','Seven ',
 'Eight ','Nine ','Ten ','Eleven ','Twelve ','Thirteen ','Fourteen ',
 'Fifteen ','Sixteen ','Seventeen ','Eighteen ','Nineteen ','Twenty ',
@@ -152,7 +153,7 @@ def num_to_word(number:int=None):
 		while num > 1000:num,f = num//1000,f+1
 		cnum = num
 		if num > 99:
-			output += word[msn[-3]] + " hundred "
+			output += word[msn[-3]] + "hundred "
 			num -= msn[-3]*100
 		if 19 < num < 100:
 			output += word[msn[-2]+18]
@@ -160,9 +161,10 @@ def num_to_word(number:int=None):
 		if num < 20:
 			output += word[num] if number > 1000 else "and "+word[num]
 			output += word[f+28]
-		number,f = int(str(number)[len(str(cnum)):]) if number > 19 else 0,0
+		f = str(number)[len(str(cnum)):]
+		number,f = int(f) if f or number > 1000 else 0,0
 	return output
 if __name__ == "__main__":
 	print(num_to_word(86000017981017))
-	print(num_to_word())
+	print(num_to_word(-int("9"*45)))
 	print(num_to_word("h"))
