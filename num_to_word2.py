@@ -157,10 +157,8 @@ def num_to_word(number:int=None):
 			num -= msn[-3]*100
 		if 19 < num < 100:
 			output += word[msn[-2]+18]
-			num -= msn[-2]*10
-		if num < 20:
-			output += word[num] if number > 1000 else "and "+word[num]
-			output += word[f+28]
+		output += word[num] if number > 1000 else "and "+word[num]
+		output += word[f+28]
 		f = str(number)[len(str(cnum)):]
 		number,f = int(f) if f or number > 1000 else 0,0
 	return output
